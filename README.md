@@ -3,12 +3,13 @@
 [![geant4](https://img.shields.io/badge/geant4-11.0-blue.svg)](http://www.geant4.org/)
 
 
-G4Bench2 is a set of benchmark tests of the Geant4 detector simulation toolkit.
+G4Bench2 is a set of benchmark tests of the [Geant4](https://geant4.org/)
+detector simulation toolkit.
 Note that `G4Bench2` supports Geant4 version 11 or later.
 [G4Bench](https://github.com/koichi-murakami/g4bench)
 is available for the previous versions.
 
-* [Releases](https://github.com/koichi-murakami/g4bench/releases)
+* [Releases](https://github.com/koichi-murakami/g4bench2/releases)
 
 ## Benchmarks
 * `ecal` : Simulation of EM calorimeter array
