@@ -1,5 +1,3 @@
-![g4bench](docs/img/logo.png)
-
 # G4Bench2
 
 [![geant4](https://img.shields.io/badge/geant4-11.0-blue.svg)](http://www.geant4.org/)
