@@ -1,32 +1,33 @@
-# Prerequisites
-*.d
+#
+# .gitignore
+#
 
-# Compiled Object files
+*.i
+*.ii
+*.gpu
+*.ptx
+*.cubin
+*.fatbin
+.tags*
+*.pyc
+
+# compiled object files
 *.slo
 *.lo
 *.o
-*.obj
 
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
+# compiled dynamic libraries
 *.so
-*.dylib
-*.dll
 
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
+# compiled static libraries
 *.lai
 *.la
 *.a
-*.lib
 
-# Executables
-*.exe
-*.out
-*.app
+# directories
+build*/
+*zzz/
+.vscode/
+
+# static analysis
+compile_flags.txt
