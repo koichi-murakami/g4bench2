@@ -9,8 +9,10 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 See the License for more information.
 ============================================================================*/
 #include <fstream>
+#include "G4AutoLock.hh"
 #include "G4Run.hh"
 #include "G4SystemOfUnits.hh"
+#include "G4Threading.hh"
 #include "G4Version.hh"
 #include "common/runaction.h"
 #include "common/simdata.h"
@@ -22,13 +24,24 @@ using namespace kut;
 namespace {
 
 TimeHistory* gtimer = nullptr;
+G4Mutex cout_mutex  = G4MUTEX_INITIALIZER;
 
 // --------------------------------------------------------------------------
 void ShowWorkerRunSummary(const G4Run* run)
 {
+  auto tid = G4Threading::G4GetThreadId();
+
+  if ( tid == G4Threading::MASTER_ID) {
+    tid = 0;
+  }
+
   // # of processed events
   int nevents = run-> GetNumberOfEvent();
-  std::cout << " * Worker Summary : #events = " << nevents << std::endl;
+
+  G4AutoLock l(&cout_mutex);
+  std::cout << " * Worker Summary (" << tid
+            << ") : #events = " << nevents << std::endl;
+  l.unlock();
 }
 
 } // end of namespace
