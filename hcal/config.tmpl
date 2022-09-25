@@ -1,0 +1,18 @@
+// - G4Bench config file written in JSON5
+{
+  // -----------------------------------------------------------------
+  // Run Configuration
+  Run : {
+    Seed : 123456789,
+    SeedOnce : false,
+    G4DATA : "/opt/geant4/data"
+  },
+  // -----------------------------------------------------------------
+  // Primary setting (Generic)
+  Primary : {
+    particle  : "proton",
+    energy    : 10000.0,   // MeV
+    position  : [ 0., 0., -70 ],  // cm
+    direction : [ 0., 0., 1.],
+  }
+}
