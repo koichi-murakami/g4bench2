@@ -21,7 +21,7 @@ public:
   AppBuilder();
   ~AppBuilder() override;
 
-  void BuildApplication(int nthreads = 1);
+  void BuildApplication(int nthreads);
 
   void SetTestingFlag(bool val);
   void SetTestingFlag(bool val, const std::string& bname,
