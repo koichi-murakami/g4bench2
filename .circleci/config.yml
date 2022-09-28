@@ -75,6 +75,6 @@ workflows:
       - Exec_hcal:
           requires:
             - Build
-      - Exec_vgeo_x18:
+      - Exec_vgeo:
           requires:
             - Build
