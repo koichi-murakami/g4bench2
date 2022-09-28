@@ -228,7 +228,7 @@ int main(int argc, char** argv)
 
   auto appbuilder = new AppBuilder();
   appbuilder-> SetTestingFlag(true, str_bench, str_cpu);
-  appbuilder-> BuildApplication();
+  appbuilder-> BuildApplication(nthreads);
 
   // ----------------------------------------------------------------------
 #ifdef ENABLE_VIS
