@@ -21,7 +21,7 @@ Usage: configure [OPTION]... [VAR=VALUE]...
 
 Options:
   -h, --help                display this help and exit
-  --deep-clean              remove build directory
+  --fresh                   use cmake fresh
 
 Installation directories:
   --prefix=PREFIX           installation prefix [config.cmake]
@@ -60,7 +60,7 @@ echo "========================================================================"
 # main
 # ======================================================================
 # default values
-deep_clean=0
+cmake_fresh=0
 prefix=_cmake
 g4_install=_cmake
 enable_vis=0
@@ -84,7 +84,7 @@ do
     --with-geant4-dir=*)       g4_install=$optarg                ;;
     --with-build-dir=*)        build_dir=$optarg                 ;;
     # ---------------------------------------------------------------
-    --deep-clean )         deep_clean=1                          ;;
+    --fresh )              cmake_fresh=1                         ;;
     --enable-vis )         enable_vis=1                          ;;
     --disable-vis )        enable_vis=0                          ;;
     --enable-opt )         enable_opt=1                          ;;
@@ -165,12 +165,17 @@ echo "cmake flags:${cmake_option}"
 # ======================================================================
 show_line
 echo "@@ execute cmake..."
-if [ $deep_clean = 1 ]; then
+if [ $cmake_fresh = 0 ]; then
   rm -rf build
 fi
 mkdir -p $build_dir
 cd $build_dir
-cmake_cmd="cmake ${cmake_option} --fresh .."
+
+if [ $cmake_fresh = 1 ]; then
+  cmake_cmd="cmake ${cmake_option} --fresh .."
+else
+  cmake_cmd="cmake ${cmake_option} .."
+fi
 eval ${cmake_cmd}
 check_error
 exit 0
