@@ -13,7 +13,7 @@ jobs:
           name: Build
           command: |
             ./configure --with-geant4-dir=/opt/geant4 --disable-vis
-            cd buid
+            cd build
             make -j4
 
   Exec_ecal:
