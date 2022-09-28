@@ -1,0 +1,80 @@
+version: 2.1
+
+jobs:
+  Build:
+    docker:
+      - image: koichimurakamik6/geant4-runtime:11.0.3
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 20.10.14
+          docker_layer_caching: true
+      - run:
+          name: Build
+          command: |
+            ./configure --with-geant4-dir=/opt/geant4 --disable-vis
+            cd buid
+            make -j4
+
+  Exec_ecal:
+    docker:
+      - image: koichimurakamik6/geant4-runtime:11.0.3
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 20.10.14
+          docker_layer_caching: true
+      - run:
+          name: test_ecal
+          command: |
+            cd build/ecal
+            ./ecal 10000
+      - store_artifacts:
+          path: ./build/ecal/g4bench.json
+
+  Exec_hcal:
+    docker:
+      - image: koichimurakamik6/geant4-runtime:11.0.3
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 20.10.14
+          docker_layer_caching: true
+      - run:
+          name: test_hcal
+          command: |
+            cd ./build/hcal
+            ./hcal 2000
+      - store_artifacts:
+          path: ./build/hcal/g4bench.json
+
+  Exec_vgeo:
+    docker:
+      - image: koichimurakamik6/geant4-runtime:11.0.3
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 20.10.14
+          docker_layer_caching: true
+      - run:
+          name: test_vgeo
+          command: |
+            cd ./build/vgeo
+            ./vgeo 100000
+      - store_artifacts:
+          path: ./build/vgeo/g4bench.json
+
+
+workflows:
+  Build_and_Run:
+    jobs:
+      - Build
+      - Exec_ecal:
+          requires:
+            - Build
+      - Exec_hcal:
+          requires:
+            - Build
+      - Exec_vgeo_x18:
+          requires:
+            - Build
