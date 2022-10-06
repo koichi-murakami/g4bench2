@@ -49,7 +49,7 @@ public:
   ~Stopwatch() = default;
 
   void Reset();
-  void Split();
+  double Split();
 
   double GetRealElapsed() const;
   double GetSystemElapsed() const;
