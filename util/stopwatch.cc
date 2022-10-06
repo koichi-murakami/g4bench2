@@ -62,17 +62,25 @@ void Stopwatch::Reset()
 }
 
 // --------------------------------------------------------------------------
-void Stopwatch::Split()
+double Stopwatch::Split()
 {
   times(&end_time_);
   end_clock_ = g_clock::now();
+
+  auto diff = end_clock_ - start_clock_;
+  double sec = std::chrono::duration_cast<std::chrono::nanoseconds>
+               (end_clock_-start_clock_).count();
+  sec *= 1.e-9;
+  return sec;
 }
 
 // --------------------------------------------------------------------------
 double Stopwatch::GetRealElapsed() const
 {
   auto diff = end_clock_ - start_clock_;
-  auto sec = diff.count() / 1.e9;
+  double sec = std::chrono::duration_cast<std::chrono::nanoseconds>
+               (end_clock_-start_clock_).count();
+  sec *= 1.e-9;
   return sec;
 }
 
