@@ -41,8 +41,8 @@ extern "C" {
 
 namespace kut {
 
-  //using g_clock = std::chrono::system_clock;
-  using g_clock = std::chrono::high_resolution_clock;
+  using g_clock = std::chrono::system_clock;
+  //using g_clock = std::chrono::high_resolution_clock;
 
 class Stopwatch {
 public:
