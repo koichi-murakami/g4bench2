@@ -37,4 +37,4 @@ do
   mv g4bench.json $log-n$t.json
 done
 
-cat *.json | jq -s . > $log.json
+cat $log-n*.json | jq -s . > $log.json
