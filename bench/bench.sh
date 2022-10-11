@@ -54,7 +54,7 @@ elif [ $NCORES = "40" ]; then
 elif [ $NCORES = "36" ]; then
   th_list=(1 2 4 8 12 18 24 36)
 
-elif [ $cpu_info = "Apple M1 Ultra" ]; then
+elif [ "$cpu_info" = "Apple M1 Ultra" ]; then
   th_list=(1 2 4 8 12 16 20)
 
 elif [ $NCORES = "24" ]; then
