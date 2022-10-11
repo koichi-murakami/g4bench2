@@ -17,7 +17,7 @@ UNIT_NEVENTS_VGEO_P=200000
 run_ecal=1
 run_hcal=1
 run_vgeo_x18=1
-run_vgeo_p200=1
+run_vgeo_p200=0
 
 # ======================================================================
 # functions
