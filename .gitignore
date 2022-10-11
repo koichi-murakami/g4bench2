@@ -28,6 +28,7 @@
 build*/
 *zzz/
 .vscode/
+.ipynb_checkpoints/
 
 # static analysis
 compile_flags.txt
