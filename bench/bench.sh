@@ -7,16 +7,6 @@ export LANG=C
 # ======================================================================
 # run parameters
 # ======================================================================
-th_list=(1 2 4 8)
-#th_list=(1 2 4 8 16)
-#th_list=(1 2 4 8 16 24)
-#h_list=(1 2 4 8 16 24 32)
-#th_list=(1 2 4 8 16 24 32 40 48)
-#th_list=(1 2 4 8 16 24 32 40 48 60 72)
-#th_list=(1 2 4 8 16 24 32 40 48 60 72 96)
-#h_list=(1 2 4 8 16 24 32 40 48 60 72 96 128)
-#th_list=(1 2 4 8 16 24 32 40 48 60 72 96 128 160)
-
 app=$1
 uevent=$2
 log=$3
@@ -27,6 +17,54 @@ if [ ${sys} = "Darwin" ]; then
 else
   cpu_info=`lscpu | grep name | cut -d : -f 2 | xargs echo`
 fi
+
+# ======================================================================
+NCORES=`nproc`
+
+if [ $NCORES = "192" ]; then
+  th_list=(1 2 4 8 16 24 32 40 48 64 80 96 144 192)
+
+elif [ $NCORES = "256" ]; then
+  th_list=(1 2 4 8 16 24 32 40 48 64 80 96 112 128 192 256)
+
+elif [ $NCORES = "128" ]; then
+  th_list=(1 2 4 8 16 24 32 40 48 56 64 96 128)
+
+elif [ $NCORES = "96" ]; then
+  th_list=(1 2 4 8 16 24 32 40 48 72 96)
+
+elif [ $NCORES = "80" ]; then
+  th_list=(1 2 4 8 16 24 32 40 60 80)
+
+elif [ $NCORES = "72" ]; then
+  th_list=(1 2 4 8 16 24 36 54 72)
+
+elif [ $NCORES = "64" ]; then
+  th_list=(1 2 4 8 16 24 32 48 64)
+
+elif [ $NCORES = "56" ]; then
+  th_list=(1 2 4 8 16 24 28 42 56)
+
+elif [ $NCORES = "48" ]; then
+  th_list=(1 2 4 8 16 24 36 48)
+
+elif [ $NCORES = "40" ]; then
+  th_list=(1 2 4 8 12 20 30 40)
+
+elif [ $NCORES = "36" ]; then
+  th_list=(1 2 4 8 12 18 24 36)
+
+elif [ $cpu_info = "Apple M1 Ultra" ]; then
+  th_list=(1 2 4 8 12 16 20)
+
+elif [ $NCORES= "24" ]; then
+  th_list=(1 2 4 8 12 18 24)
+
+else
+  th_list=(1 2)
+fi
+
+#th_list=()
 
 # ======================================================================
 for t in "${th_list[@]}"
