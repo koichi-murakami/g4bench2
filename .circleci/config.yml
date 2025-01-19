@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   Ecal:
     docker:
-      - image: koichimurakamik6/geant4-runtime:11.0.3
+      - image: koichimurakamik6/geant4-runtime:latest
     steps:
       - checkout
       - setup_remote_docker:
@@ -21,7 +21,7 @@ jobs:
 
   Hcal:
     docker:
-      - image: koichimurakamik6/geant4-runtime:11.0.3
+      - image: koichimurakamik6/geant4-runtime:latest
     steps:
       - checkout
       - setup_remote_docker:
@@ -39,7 +39,7 @@ jobs:
 
   Vgeo:
     docker:
-      - image: koichimurakamik6/geant4-runtime:11.0.3
+      - image: koichimurakamik6/geant4-runtime:latest
     steps:
       - checkout
       - setup_remote_docker:
