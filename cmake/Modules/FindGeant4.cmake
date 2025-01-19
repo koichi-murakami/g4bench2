@@ -56,41 +56,89 @@ endif()
 set(GEANT4_INCLUDE_DIR ${GEANT4_PREFIX}/include/Geant4)
 set(GEANT4_LIBRARY_DIR ${GEANT4_PREFIX}/${_LIBDIR})
 
+
+if (${GEANT4_VERSION} VERSION_LESS 11.1.0)
+  set(LIBSET_OLD TRUE)
+else()
+  set(LIBSET_OLD FALSE)
+endif()
+
 if (GEANT4_STATIC)
-set(GEANT4_LIBRARIES  ${GEANT4_LIBRARY_DIR}/libG4interfaces.a
-                      ${GEANT4_LIBRARY_DIR}/libG4physicslists.a
-                      ${GEANT4_LIBRARY_DIR}/libG4tasking.a
-                      ${GEANT4_LIBRARY_DIR}/libG4run.a
-                      ${GEANT4_LIBRARY_DIR}/libG4event.a
-                      ${GEANT4_LIBRARY_DIR}/libG4tracking.a
-                      ${GEANT4_LIBRARY_DIR}/libG4processes.a
-                      ${GEANT4_LIBRARY_DIR}/libG4digits_hits.a
-                      ${GEANT4_LIBRARY_DIR}/libG4track.a
-                      ${GEANT4_LIBRARY_DIR}/libG4particles.a
-                      ${GEANT4_LIBRARY_DIR}/libG4geometry.a
-                      ${GEANT4_LIBRARY_DIR}/libG4materials.a
-                      ${GEANT4_LIBRARY_DIR}/libG4graphics_reps.a
-                      ${GEANT4_LIBRARY_DIR}/libG4intercoms.a
-                      ${GEANT4_LIBRARY_DIR}/libG4global.a
-                      ${GEANT4_LIBRARY_DIR}/libG4ptl.a
-                      ${GEANT4_LIBRARY_DIR}/libG4clhep.a
-                      ${GEANT4_LIBRARY_DIR}/libG4zlib.a
-                      expat pthread)
+if (LIBSET_OLD)
+  set(GEANT4_LIBRARIES  ${GEANT4_LIBRARY_DIR}/libG4interfaces.a
+                        ${GEANT4_LIBRARY_DIR}/libG4physicslists.a
+                        ${GEANT4_LIBRARY_DIR}/libG4tasking.a
+                        ${GEANT4_LIBRARY_DIR}/libG4run.a
+                        ${GEANT4_LIBRARY_DIR}/libG4event.a
+                        ${GEANT4_LIBRARY_DIR}/libG4tracking.a
+                        ${GEANT4_LIBRARY_DIR}/libG4processes.a
+                        ${GEANT4_LIBRARY_DIR}/libG4digits_hits.a
+                        ${GEANT4_LIBRARY_DIR}/libG4track.a
+                        ${GEANT4_LIBRARY_DIR}/libG4particles.a
+                        ${GEANT4_LIBRARY_DIR}/libG4geometry.a
+                        ${GEANT4_LIBRARY_DIR}/libG4materials.a
+                        ${ GEANT4_LIBRARY_DIR}/libG4graphics_reps.a
+                        ${GEANT4_LIBRARY_DIR}/libG4intercoms.a
+                        ${GEANT4_LIBRARY_DIR}/libG4global.a
+                        ${GEANT4_LIBRARY_DIR}/libG4ptl.a
+                        ${GEANT4_LIBRARY_DIR}/libG4clhep.a
+                        ${GEANT4_LIBRARY_DIR}/libG4zlib.a
+                        expat pthread)
+else()
+  set(GEANT4_LIBRARIES  ${GEANT4_LIBRARY_DIR}/libG4interfaces.a
+                        ${GEANT4_LIBRARY_DIR}/libG4physicslists.a
+                        ${GEANT4_LIBRARY_DIR}/libG4run.a
+                        ${GEANT4_LIBRARY_DIR}/libG4event.a
+                        ${GEANT4_LIBRARY_DIR}/libG4tracking.a
+                        ${GEANT4_LIBRARY_DIR}/libG4processes.a
+                        ${GEANT4_LIBRARY_DIR}/libG4digits_hits.a
+                        ${GEANT4_LIBRARY_DIR}/libG4track.a
+                        ${GEANT4_LIBRARY_DIR}/libG4particles.a
+                        ${GEANT4_LIBRARY_DIR}/libG4geometry.a
+                        ${GEANT4_LIBRARY_DIR}/libG4materials.a
+                        ${GEANT4_LIBRARY_DIR}/libG4graphics_reps.a
+                        ${GEANT4_LIBRARY_DIR}/libG4intercoms.a
+                        ${GEANT4_LIBRARY_DIR}/libG4global.a
+                        ${GEANT4_LIBRARY_DIR}/libG4ptl.a
+                        ${GEANT4_LIBRARY_DIR}/libG4clhep.a
+                        ${GEANT4_LIBRARY_DIR}/libG4zlib.a
+                        expat pthread)
+endif()
 
 else()
-set(GEANT4_LIBRARIES  G4interfaces G4physicslists
-                      G4tasking G4run G4event G4tracking
-                      G4processes G4digits_hits G4track G4particles G4geometry
-                      G4materials G4graphics_reps G4intercoms
-                      G4global G4ptl G4clhep G4zlib)
+if (LIBSET_OLD)
+  set(GEANT4_LIBRARIES  G4interfaces G4physicslists
+                        G4tasking G4run G4event G4tracking
+                        G4processes G4digits_hits G4track G4particles G4geometry
+                        G4materials G4graphics_reps G4intercoms
+                        G4global G4ptl G4clhep G4zlib)
 
-set(GEANT4_LIBRARIES_WITH_VIS
-                      G4OpenGL G4gl2ps G4Tree G4FR G4GMocren G4visHepRep
-                      G4RayTracer G4VRML G4vis_management G4modeling
-                      G4interfaces G4physicslists
-                      G4tasking G4run G4event G4tracking G4parmodels
-                      G4processes G4digits_hits G4track G4particles G4geometry
-                      G4materials G4graphics_reps G4intercoms
-                      G4global G4ptl G4clhep G4zlib)
+
+  set(GEANT4_LIBRARIES_WITH_VIS
+                        G4OpenGL G4gl2ps G4Tree G4FR G4GMocren G4visHepRep
+                        G4RayTracer G4VRML G4vis_management G4modeling
+                        G4interfaces G4physicslists
+                        G4tasking G4run G4event G4tracking G4parmodels
+                        G4processes G4digits_hits G4track G4particles G4geometry
+                        G4materials G4graphics_reps G4intercoms
+                        G4global G4ptl G4clhep G4zlib)
+
+else()
+  set(GEANT4_LIBRARIES  G4interfaces G4physicslists
+                        G4run G4event G4tracking
+                        G4processes G4digits_hits G4track G4particles G4geometry
+                        G4materials G4graphics_reps G4intercoms
+                        G4global G4ptl G4clhep G4zlib)
+
+
+  set(GEANT4_LIBRARIES_WITH_VIS
+                        G4OpenGL G4gl2ps G4Tree G4FR G4GMocren G4visHepRep
+                        G4RayTracer G4VRML G4vis_management G4modeling
+                        G4interfaces G4physicslists
+                        G4run G4event G4tracking G4parmodels
+                        G4processes G4digits_hits G4track G4particles G4geometry
+                        G4materials G4graphics_reps G4intercoms
+                        G4global G4ptl G4clhep G4zlib)
+endif()
 
 endif()
