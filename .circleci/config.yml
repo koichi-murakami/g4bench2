@@ -25,7 +25,7 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker:
-          version: 20.10.14
+          version: default
           docker_layer_caching: true
       - run:
           name: test_hcal
@@ -43,7 +43,7 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker:
-          version: 20.10.14
+          version: default
           docker_layer_caching: true
       - run:
           name: test_vgeo
