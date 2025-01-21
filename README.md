@@ -2,7 +2,7 @@
 
 # G4Bench2
 
-[![geant4](https://img.shields.io/badge/geant4-11.0-blue.svg)](http://www.geant4.org/)
+[![geant4](https://img.shields.io/badge/geant4-11.3-blue.svg)](http://www.geant4.org/)
 
 [![koichi-murakami](https://circleci.com/gh/koichi-murakami/g4bench2.svg?style=svg)](https://circleci.com/gh/koichi-murakami/g4bench2)
 
