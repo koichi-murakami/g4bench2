@@ -29,6 +29,7 @@ build*/
 *zzz/
 .vscode/
 .ipynb_checkpoints/
+.jupyter
 
 # static analysis
 compile_flags.txt
